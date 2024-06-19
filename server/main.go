@@ -92,7 +92,19 @@ func main() {
 	http.HandleFunc("/api/edit-barista", editBarista)
 	http.HandleFunc("/api/delete-barista", delBarista)
 
+	// Tes DB
+	http.HandleFunc("/test-db", testDBConnection)
 	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+func testDBConnection(w http.ResponseWriter, r *http.Request) {
+	err := db.Ping()
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error connecting to database: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, "Database connection successful!")
 }
 
 func createEvent(w http.ResponseWriter, r *http.Request) {
@@ -532,7 +544,7 @@ func createBarista(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("../public/img/barista/%s", handler.Filename)
+	filePath := fmt.Sprintf("/var/www/html/RumahAkasha/public/img/barista/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -582,7 +594,7 @@ func editBarista(w http.ResponseWriter, r *http.Request) {
 	file, handler, err := r.FormFile("foto_barista")
 	if err == nil {
 		defer file.Close()
-		filePath := fmt.Sprintf("../public/img/barista/%s", handler.Filename)
+		filePath := fmt.Sprintf("/var/www/html/RumahAkasha/public/img/barista/%s", handler.Filename)
 		out, err := os.Create(filePath)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)

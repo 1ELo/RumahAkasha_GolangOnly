@@ -133,7 +133,7 @@ func createEvent(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("../public/img/event/%s", handler.Filename)
+	filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -180,7 +180,7 @@ func editEvent(w http.ResponseWriter, r *http.Request) {
 	file, handler, err := r.FormFile("image")
 	if err == nil {
 		defer file.Close()
-		filePath := fmt.Sprintf("../public/img/event/%s", handler.Filename)
+		filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 		out, err := os.Create(filePath)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -258,7 +258,7 @@ func createMenuCoffee(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("../public/img/menu/%s", handler.Filename)
+	filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -303,7 +303,7 @@ func editMenu(w http.ResponseWriter, r *http.Request) {
 	file, handler, err := r.FormFile("image")
 	if err == nil {
 		defer file.Close()
-		filePath := fmt.Sprintf("../public/img/menu/%s", handler.Filename)
+		filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 		out, err := os.Create(filePath)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -381,7 +381,7 @@ func createMenuNoncoffee(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("../public/img/menu/%s", handler.Filename)
+	filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -436,7 +436,7 @@ func createMenuSignature(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("../public/img/menu/%s", handler.Filename)
+	filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -489,7 +489,7 @@ func createMenuFood(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("../public/img/menu/%s", handler.Filename)
+	filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

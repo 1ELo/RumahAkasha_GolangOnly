@@ -68,7 +68,7 @@ var db *sql.DB
 
 func main() {
 	var err error
-	db, err = sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/rumahakasha")
+	db, err = sql.Open("mysql", "user2:123456@tcp(192.168.244.133:3306)/rumahakasha")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -544,7 +544,7 @@ func createBarista(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	filePath := fmt.Sprintf("/var/www/html/RumahAkasha/public/img/barista/%s", handler.Filename)
+	filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 	out, err := os.Create(filePath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -594,7 +594,7 @@ func editBarista(w http.ResponseWriter, r *http.Request) {
 	file, handler, err := r.FormFile("foto_barista")
 	if err == nil {
 		defer file.Close()
-		filePath := fmt.Sprintf("/var/www/html/RumahAkasha/public/img/barista/%s", handler.Filename)
+		filePath := fmt.Sprintf("/mnt/laravel_barista_images/%s", handler.Filename)
 		out, err := os.Create(filePath)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
